@@ -24,6 +24,8 @@ function openTab(evt, cityName) {
   evt.currentTarget.className += ' active';
 }
 
+const warningEmployeesTable = document.querySelector('#warningEmployeesTable');
+
 // function performanceLowStrategy(employees) {
 //   const resultArr = employees.filter(
 //     (employee) => employee.performance === 'low'
@@ -131,13 +133,15 @@ async function getEmployees() {
       // //   vacationRequiredEmployees.checkout();
 
       // --- For Eugene!!! ---
-      vacationNeededEmployees.setEmployeesArr(initialEmployees);
-      console.log(vacationNeededEmployees.checkout());
+      // vacationNeededEmployees.setEmployeesArr(initialEmployees);
+      // console.log(vacationNeededEmployees.checkout());
+      // renderTableRows(vacationNeededEmployees.checkout());
       //   vacationRequiredEmployees.checkout();
 
       // --- For Oleh!!! ---
       rMsPromotionNeeded.setEmployeesArr(initialEmployees);
       console.log(rMsPromotionNeeded.checkout());
+      renderTableRows(rMsPromotionNeeded.checkout());
       //   vacationRequiredEmployees.checkout();
 
       //  === END strategy pattern ===
@@ -151,3 +155,58 @@ async function getEmployees() {
 }
 
 getEmployees();
+
+// --- For Eugene!!! ---
+function renderTableRows(array) {
+  warningEmployeesTable.insertAdjacentHTML('afterbegin', 
+  `
+      <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Performance</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+      `);
+  warningEmployeesTable.lastElementChild.insertAdjacentHTML('beforeend', 
+  array.reduce((acc, item) => acc +      
+      `
+      <tr>
+          <td>${item.id}</td>
+          <td>${item.name}</td>
+          <td>${item.performance}</td>
+      </tr>
+      `, '')
+  );
+}
+
+// --- For Oleh!!! ---
+// function renderTableRows(array) {
+//   const tbody = array.reduce((acc, item) => acc +      
+//   `
+//   <tr>
+//       <td>${item.id}</td>
+//       <td>${item.name}</td>
+//       <td>${item.performance}</td>
+//       <td>${item.salary}</td>
+//       <td>${item.pool_name}</td>
+//   </tr>
+//   `, '')
+//   warningEmployeesTable.insertAdjacentHTML('afterbegin', 
+//   `
+//       <thead>
+//         <tr>
+//             <th>ID</th>
+//             <th>Name</th>
+//             <th>Performance</th>
+//             <th>Salary</th>
+//             <th>Pool name</th>
+//         </tr>
+//       </thead>
+//       <tbody>
+//       </tbody>
+//       `);
+//   warningEmployeesTable.lastElementChild.insertAdjacentHTML('beforeend', tbody);
+// }

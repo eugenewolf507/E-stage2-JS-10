@@ -38,3 +38,17 @@ body {
   border: 1px solid #ccc;
   border-top: none;
 }
+
+.warning-employees-table {
+  width: 100%;
+}
+
+.warning-employees-table td,
+.warning-employees-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.warning-employees-table td {
+  text-align: center;
+}

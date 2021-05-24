@@ -24,36 +24,50 @@ function openTab(evt, cityName) {
   evt.currentTarget.className += ' active';
 }
 
-function performanceLowStrategy(employees) {
+// function performanceLowStrategy(employees) {
+//   const resultArr = employees.filter(
+//     (employee) => employee.performance === 'low'
+//   );
+//   return resultArr;
+// }
+
+// function performanceAverageStrategy(employees) {
+//   const resultArr = employees.filter(
+//     (employee) => employee.performance === 'average'
+//   );
+//   return resultArr;
+// }
+
+// function performanceTopStrategy(employees) {
+//   const resultArr = employees.filter(
+//     (employee) => employee.performance === 'top'
+//   );
+//   return resultArr;
+// }
+
+// function vacationRequiredStrategy(employees) {
+//   const resultArr = employees.filter(
+//     (employee) => employee.last_vacation_date === undefined
+//   );
+//   return resultArr;
+// }
+
+function findVacationIsNeededStrategy(employees) {
   const resultArr = employees.filter(
-    (employee) => employee.performance === 'low'
+    (employee) => employee.last_vacation_date === undefined && employee.performance === 'low'
   );
   return resultArr;
 }
 
-function performanceAverageStrategy(employees) {
-  const resultArr = employees.filter(
-    (employee) => employee.performance === 'average'
-  );
-  return resultArr;
-}
+// function findRMStrategy(employees) {
+//   const resultArr = employees.filter((employee) => employee.pool_name);
+//   return resultArr;
+// }
 
-function performanceTopStrategy(employees) {
+function findRMsPromotionNeededStrategy(employees) {
   const resultArr = employees.filter(
-    (employee) => employee.performance === 'top'
-  );
-  return resultArr;
-}
-
-function vacationRequiredStrategy(employees) {
-  const resultArr = employees.filter(
-    (employee) => employee.last_vacation_date === undefined
-  );
-  return resultArr;
-}
-
-function findRMStrategy(employees) {
-  const resultArr = employees.filter((employee) => employee.pool_name);
+    (employee) => employee.pool_name && employee.performance === 'top'
+    );
   return resultArr;
 }
 
@@ -70,19 +84,23 @@ class WarningEmployees {
   }
 }
 
-const performanceLowEmployees = new WarningEmployees(performanceLowStrategy);
+// const performanceLowEmployees = new WarningEmployees(performanceLowStrategy);
 
-const performanceAverageEmployees = new WarningEmployees(
-  performanceAverageStrategy
-);
+// const performanceAverageEmployees = new WarningEmployees(
+//   performanceAverageStrategy
+// );
 
-const performanceTopEmployees = new WarningEmployees(performanceTopStrategy);
+// const performanceTopEmployees = new WarningEmployees(performanceTopStrategy);
 
-const vacationRequiredEmployees = new WarningEmployees(
-  vacationRequiredStrategy
-);
+// const vacationRequiredEmployees = new WarningEmployees(
+//   vacationRequiredStrategy
+// );
 
-const rMEmployees = new WarningEmployees(findRMStrategy);
+// const rMEmployees = new WarningEmployees(findRMStrategy);
+
+const vacationNeededEmployees = new WarningEmployees(findVacationIsNeededStrategy);
+
+const rMsPromotionNeeded = new WarningEmployees(findRMsPromotionNeededStrategy);
 
 async function getEmployees() {
   try {
@@ -92,24 +110,34 @@ async function getEmployees() {
       const initialEmployees = employees;
       console.log(employees);
       //  === START strategy pattern ===
-      performanceLowEmployees.setEmployeesArr(initialEmployees);
-      console.log(performanceLowEmployees.checkout());
+      // performanceLowEmployees.setEmployeesArr(initialEmployees);
+      // console.log(performanceLowEmployees.checkout());
       //   performanceLowEmployees.checkout();
 
-      performanceAverageEmployees.setEmployeesArr(initialEmployees);
-      console.log(performanceAverageEmployees.checkout());
+      // performanceAverageEmployees.setEmployeesArr(initialEmployees);
+      // console.log(performanceAverageEmployees.checkout());
       //   performanceAverageEmployees.checkout();
 
-      performanceTopEmployees.setEmployeesArr(initialEmployees);
-      console.log(performanceTopEmployees.checkout());
+      // performanceTopEmployees.setEmployeesArr(initialEmployees);
+      // console.log(performanceTopEmployees.checkout());
       //   performanceTopEmployees.checkout();
 
-      vacationRequiredEmployees.setEmployeesArr(initialEmployees);
-      console.log(vacationRequiredEmployees.checkout());
+      // vacationRequiredEmployees.setEmployeesArr(initialEmployees);
+      // console.log(vacationRequiredEmployees.checkout());
       //   vacationRequiredEmployees.checkout();
 
-      rMEmployees.setEmployeesArr(initialEmployees);
-      console.log(rMEmployees.checkout());
+      // rMEmployees.setEmployeesArr(initialEmployees);
+      // console.log(rMEmployees.checkout());
+      // //   vacationRequiredEmployees.checkout();
+
+      // --- For Eugene!!! ---
+      vacationNeededEmployees.setEmployeesArr(initialEmployees);
+      console.log(vacationNeededEmployees.checkout());
+      //   vacationRequiredEmployees.checkout();
+
+      // --- For Oleh!!! ---
+      rMsPromotionNeeded.setEmployeesArr(initialEmployees);
+      console.log(rMsPromotionNeeded.checkout());
       //   vacationRequiredEmployees.checkout();
 
       //  === END strategy pattern ===

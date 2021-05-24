@@ -1,11 +1,54 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <title>JS Patterns</title>
-      <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <title>JS Patterns</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=0"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
 
   <body>
+    <div class="tab">
+      <button
+        class="tablinks"
+        onclick="openTab(event, 'allEmployees')"
+        id="defaultOpen"
+      >
+        All Employees
+      </button>
+      <button class="tablinks" onclick="openTab(event, 'allUnits')">
+        All Units
+      </button>
+      <button class="tablinks" onclick="openTab(event, 'warningEmployees')">
+        Warning Employees
+      </button>
+    </div>
+
+    <div id="allEmployees" class="tabcontent">
+      <h3>All Employees</h3>
+      <p>All Employees.</p>
+      <p>Tree-like list (table) of all the Employees with RMs highlighted</p>
+    </div>
+
+    <div id="allUnits" class="tabcontent">
+      <h3>All Units</h3>
+      <p>All Units.</p>
+      <p>
+        Tree-like list (table) of units with average data by unit (all
+        employees)
+      </p>
+    </div>
+
+    <div id="warningEmployees" class="tabcontent">
+      <h3>Warning Employees</h3>
+      <p>Warning Employees.</p>
+      <p>
+        List of employees selected by a specific criterion (to be chosen on your
+        own, e.g. performance is low and salary is above average by pool)
+      </p>
+    </div>
     <script src="js/index.js"></script>
   </body>
 </html>
